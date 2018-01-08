@@ -6,7 +6,7 @@ public class Ticker {
 	private String price;
 	private String volume;
 	private String change;
-	
+
 	public String getBase() {
 		return base;
 	}
@@ -18,9 +18,9 @@ public class Ticker {
 	}
 	public void setTarget(String target) {
 		if (target.equals("EUR")) target = "€";
-		
+
 		if (target.equals("USD")) target = "$";
-		
+
 		this.target = target;
 	}
 	public String getPrice() {
@@ -40,10 +40,15 @@ public class Ticker {
 	}
 	public void setChange(String change) {
 		double changeDouble = Double.parseDouble(change);
-		double changePercentDouble = changeDouble/1000;
-		
-		String changePercent = Double.toString(changePercentDouble);
-		
-		this.change = changePercent.substring(0,5);
+
+		if(changeDouble != 0) {
+			double changePercentDouble = changeDouble/1000;
+
+			String changePercent = Double.toString(changePercentDouble);
+
+			this.change = changePercent.substring(0,5);
+		}else {
+			this.change = "0";
+		}
 	}
 }
